@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Paz e Luz — orações, saudações e versículos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Nunito+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+      
+    />
+    <style>
+      :root {
+        --bg: #f6f4fb;
+        --ink: #1f2142;
+        --soft: #555878;
+        --card: #ffffff;
+        --line: #d9d5ea;
+        --gold: #b9812c;
+        --dusk1: #232650;
+        --dusk2: #6c5a9c;
+        --dawn: #f0b47a;
+        --on-dusk: #fbf8ff;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #14152b;
+          --ink: #ece9f8;
+          --soft: #a9aacb;
+          --card: #1d1f3d;
+          --line: #33365f;
+          --gold: #e9b872;
+          color-scheme: dark;
+        }
+      }
+      :root[data-theme="dark"] {
+        --bg: #14152b;
+        --ink: #ece9f8;
+        --soft: #a9aacb;
+        --card: #1d1f3d;
+        --line: #33365f;
+        --gold: #e9b872;
+        color-scheme: dark;
+      }
+      html {
+        scroll-padding-top: env(safe-area-inset-top, 0px);
+        scroll-behavior: smooth;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font:
+          400 1.05rem/1.7 "Nunito Sans",
+          system-ui,
+          sans-serif;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-weight: 600;
+        line-height: 1.15;
+        margin: 0;
+      }
+      .wrap {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+      }
+      a {
+        color: inherit;
+      }
+      :focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      .hero {
+        background: linear-gradient(
+          180deg,
+          var(--dusk1) 0%,
+          var(--dusk2) 62%,
+          var(--dawn) 130%
+        );
+        color: var(--on-dusk);
+        text-align: center;
+        padding: 4.5rem 0 5rem;
+      }
+      .hero h1 {
+        font-size: clamp(2.6rem, 8vw, 4.6rem);
+        letter-spacing: 0.01em;
+      }
+      .hero p.sub {
+        max-width: 34rem;
+        margin: 1rem auto 0;
+        opacity: 0.88;
+      }
+      .verse {
+        max-width: 40rem;
+        margin: 2.5rem auto 0;
+        padding: 2rem 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        border-radius: 28px 28px 120px 120px/28px 28px 60px 60px;
+        background: rgba(20, 21, 43, 0.28);
+      }
+      .verse q {
+        display: block;
+        font:
+          italic 500 clamp(1.45rem, 4.5vw, 2rem)/1.35 "Cormorant Garamond",
+          Georgia,
+          serif;
+        quotes: "“" "”";
+        min-height: 5.4em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .verse cite {
+        display: block;
+        margin-top: 0.6rem;
+        font-style: normal;
+        color: var(--dawn);
+        font-weight: 600;
+      }
+      button {
+        font: inherit;
+        cursor: pointer;
+      }
+      .btn {
+        margin-top: 1.2rem;
+        background: var(--dawn);
+        color: #2a1f3d;
+        border: 0;
+        border-radius: 999px;
+        padding: 0.7rem 1.6rem;
+        font-weight: 600;
+      }
+      .btn:hover {
+        filter: brightness(1.07);
+      }
+      nav.top {
+        display: flex;
+        gap: 0.5rem 1.4rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        font-size: 0.95rem;
+      }
+      nav.top a {
+        text-decoration: none;
+        opacity: 0.9;
+        border-bottom: 1px solid transparent;
+      }
+      nav.top a:hover {
+        border-color: var(--dawn);
+      }
+
+      section {
+        padding: 4rem 0 1rem;
+      }
+      section h2 {
+        font-size: clamp(2rem, 5vw, 2.8rem);
+      }
+      section .lead {
+        color: var(--soft);
+        max-width: 36rem;
+        margin: 0.6rem 0 2rem;
+      }
+
+      .tabs {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.2rem;
+      }
+      .tabs button {
+        background: transparent;
+        color: var(--ink);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.45rem 1.1rem;
+      }
+      .tabs button[aria-selected="true"] {
+        background: var(--ink);
+        color: var(--bg);
+        border-color: var(--ink);
+      }
+      .prayer {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-left: 5px solid var(--gold);
+        border-radius: 6px 22px 22px 6px;
+        padding: 1.8rem 1.6rem;
+        max-width: 44rem;
+      }
+      .prayer h3 {
+        font-size: 1.7rem;
+        margin-bottom: 0.8rem;
+      }
+      .prayer p {
+        margin: 0 0 0.9rem;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 1.3rem;
+        line-height: 1.55;
+      }
+      .prayer p:last-child {
+        margin: 0;
+      }
+
+      .greet {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+      }
+      .greet blockquote {
+        margin: 0;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 1.2rem 1.2rem 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .greet blockquote:nth-child(even) {
+        border-radius: 18px 18px 18px 4px;
+      }
+      .greet blockquote:nth-child(odd) {
+        border-radius: 18px 18px 4px 18px;
+      }
+      .greet b {
+        display: block;
+        font:
+          600 1.15rem "Cormorant Garamond",
+          Georgia,
+          serif;
+        color: var(--gold);
+        margin-bottom: 0.3rem;
+      }
+      .copy {
+        align-self: flex-start;
+        background: none;
+        border: 1px solid var(--line);
+        color: var(--ink);
+        border-radius: 999px;
+        padding: 0.25rem 0.9rem;
+        font-size: 0.9rem;
+      }
+      .copy:hover {
+        border-color: var(--gold);
+      }
+
+      .tips {
+        display: grid;
+        gap: 0;
+        max-width: 44rem;
+        border-top: 1px solid var(--line);
+      }
+      .tips details {
+        border-bottom: 1px solid var(--line);
+        padding: 1rem 0.2rem;
+      }
+      .tips summary {
+        cursor: pointer;
+        font:
+          600 1.45rem "Cormorant Garamond",
+          Georgia,
+          serif;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .tips summary::-webkit-details-marker {
+        display: none;
+      }
+      .tips summary::after {
+        content: "+";
+        color: var(--gold);
+        font-size: 1.6rem;
+        line-height: 1;
+      }
+      .tips details[open] summary::after {
+        content: "–";
+      }
+      .tips p {
+        margin: 0.6rem 0 0;
+        color: var(--soft);
+        max-width: 38rem;
+      }
+
+      footer {
+        margin-top: 5rem;
+        padding: 3rem 0;
+        text-align: center;
+        background: var(--dusk1);
+        color: var(--on-dusk);
+      }
+      footer p {
+        margin: 0.3rem 0;
+        opacity: 0.85;
+      }
+      footer .bless {
+        font:
+          italic 500 1.6rem "Cormorant Garamond",
+          Georgia,
+          serif;
+        opacity: 1;
+        color: var(--dawn);
+      }
+      .founder {
+        margin: 0.6rem 0 0;
+        font:
+          600 1.05rem "Cormorant Garamond",
+          Georgia,
+          serif;
+        color: var(--dawn);
+        letter-spacing: 0.02em;
+      }
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+        transform: translateX(-50%);
+        background: var(--ink);
+        color: var(--bg);
+        padding: 0.5rem 1.2rem;
+        border-radius: 999px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s;
+      }
+      .toast.on {
+        opacity: 1;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .toast {
+          transition: none;
+        }
+      }
+
+      #louvores .sound{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1rem 1.2rem;margin-top:.8rem}
+      #louvores .sound h3{margin:0;font:600 1.3rem "Cormorant Garamond",Georgia,serif;color:var(--ink)}
+      #louvores .sound p{margin:.15rem 0 0;color:var(--soft);font-size:.92rem}
+      #louvores .sound .info{flex:1 1 14rem}
+      .playbtn{border:0;cursor:pointer;border-radius:999px;padding:.6rem 1.3rem;font:600 .95rem "Nunito Sans",system-ui,sans-serif;background:var(--dusk2);color:var(--on-dusk);min-width:7.5rem}
+      .playbtn[aria-pressed="true"]{background:var(--gold);color:#1f2142}
+      .vol{display:flex;align-items:center;gap:.6rem;margin-top:1rem;color:var(--soft);font-size:.92rem}
+      .vol input{accent-color:var(--gold);width:10rem;max-width:50vw}
+      .links{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.2rem}
+      .links a{color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:.5rem 1.1rem;text-decoration:none;font-weight:600}
+      .note{font-size:.85rem;color:var(--soft);margin-top:1rem;max-width:40rem}
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="wrap">
+        <h1>Paz e Luz</h1>
+        <p class="sub">
+          Um espaço de calma para começar e terminar o dia com fé, gratidão e
+          esperança.
+        </p>
+        <p class="founder">Fundador: JohnDmatas</p>
+        <div class="verse" aria-live="polite">
+          <q id="vtext"></q>
+          <cite id="vref"></cite>
+        </div>
+        <button class="btn" id="nextVerse">Receber outro versículo</button>
+        <nav class="top" aria-label="Seções">
+          <a href="#oracoes">Orações</a><a href="#louvores">Louvores</a><a href="#saudacoes">Saudações</a
+          ><a href="#dicas">Dicas para o dia a dia</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section id="oracoes">
+        <h2>Orações para cada momento</h2>
+        <p class="lead">
+          Palavras simples para conversar com Deus. Use como estão ou transforme
+          com as suas próprias palavras.
+        </p>
+        <div class="tabs" role="tablist" id="tabs"></div>
+        <article
+          class="prayer"
+          id="prayer"
+          role="tabpanel"
+          aria-live="polite"
+        ></article>
+      </section>
+
+      <section id="saudacoes">
+        <h2>Saudações abençoadas</h2>
+        <p class="lead">
+          Mensagens curtas para enviar a quem você ama. Toque em copiar e
+          compartilhe.
+        </p>
+        <div class="greet" id="greet"></div>
+      </section>
+
+            <section id="louvores">
+        <h2>Louvores e sons de paz</h2>
+        <p class="lead">
+          Toque um hino instrumental ou deixe um som suave ao fundo enquanto
+          você ora e lê.
+        </p>
+        <div class="sound">
+          <div class="info">
+            <h3>Som de oração</h3>
+            <p>Acordes suaves e contínuos, para ambiente de silêncio e meditação.</p>
+          </div>
+          <button class="playbtn" id="ambBtn" aria-pressed="false">▶ Ligar</button>
+        </div>
+        <div id="songs"></div>
+        <div class="vol">
+          <label for="vol">Volume</label>
+          <input type="range" id="vol" min="0" max="100" value="60" />
+        </div>
+        <div class="links">
+          <a href="https://www.youtube.com/results?search_query=louvores+para+orar" target="_blank" rel="noopener">Louvores no YouTube</a>
+          <a href="https://open.spotify.com/search/louvores" target="_blank" rel="noopener">Louvores no Spotify</a>
+        </div>
+        <p class="note">
+          Os hinos acima são melodias de domínio público tocadas por um
+          instrumento simples, sem letra cantada. O som só começa quando você
+          toca no botão.
+        </p>
+      </section>
+
+      <section id="dicas">
+        <h2>Dicas para viver a fé no dia a dia</h2>
+        <p class="lead">
+          Pequenos hábitos que ajudam a manter o coração em paz.
+        </p>
+        <div class="tips">
+          <details open>
+            <summary>Comece o dia em silêncio</summary>
+            <p>
+              Antes de pegar o celular, reserve cinco minutos para respirar
+              fundo, agradecer pelo novo dia e entregar a Deus o que vem pela
+              frente.
+            </p>
+          </details>
+          <details>
+            <summary>Leia um versículo por dia</summary>
+            <p>
+              Escolha um trecho curto, leia devagar duas vezes e leve uma frase
+              com você. Anote em um caderno o que ela significou para você.
+            </p>
+          </details>
+          <details>
+            <summary>Cultive a gratidão</summary>
+            <p>
+              À noite, escreva três motivos de agradecimento, mesmo nos dias
+              difíceis. Com o tempo, o olhar muda e passa a enxergar mais
+              bênçãos.
+            </p>
+          </details>
+          <details>
+            <summary>Ore pelos outros</summary>
+            <p>
+              Reserve um momento para lembrar o nome de quem precisa de força:
+              família, amigos, quem está doente ou distante. Interceder também
+              acalma quem ora.
+            </p>
+          </details>
+          <details>
+            <summary>Pratique o perdão</summary>
+            <p>
+              Guardar mágoa pesa. Peça a Deus ajuda para perdoar, um passo de
+              cada vez, sem pressa e sem se cobrar demais.
+            </p>
+          </details>
+          <details>
+            <summary>Encontre uma comunidade</summary>
+            <p>
+              A fé cresce em companhia. Participe de um grupo de oração, de uma
+              missa ou de um culto, e compartilhe suas alegrias e lutas.
+            </p>
+          </details>
+          <details>
+            <summary>Termine o dia em paz</summary>
+            <p>
+              Antes de dormir, faça uma oração curta de entrega: deixe nas mãos
+              de Deus o que não pôde resolver hoje e descanse.
+            </p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <p class="bless">Que a paz do Senhor esteja com você.</p>
+        <p>
+          Compartilhe esta página com quem precisa de uma palavra de esperança.
+        </p>
+        <p class="founder">Fundador: JohnDmatas</p>
+      </div>
+    </footer>
+    <div class="toast" id="toast" role="status">Mensagem copiada</div>
+
+    <script>
+      var verses = [
+        ["O Senhor é o meu pastor; nada me faltará.", "Salmos 23:1"],
+        [
+          "Não temas, porque eu sou contigo; não te assombres, porque eu sou o teu Deus; eu te fortaleço, e te ajudo.",
+          "Isaías 41:10",
+        ],
+        ["Posso todas as coisas naquele que me fortalece.", "Filipenses 4:13"],
+        [
+          "Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei.",
+          "Mateus 11:28",
+        ],
+        [
+          "Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento.",
+          "Provérbios 3:5",
+        ],
+        [
+          "Deus é o nosso refúgio e fortaleza, socorro bem presente na angústia.",
+          "Salmos 46:1",
+        ],
+        [
+          "O Senhor te abençoe e te guarde; o Senhor faça resplandecer o seu rosto sobre ti e te dê a paz.",
+          "Números 6:24-26",
+        ],
+        [
+          "Porque eu bem sei os pensamentos que penso de vós, diz o Senhor; pensamentos de paz, e não de mal.",
+          "Jeremias 29:11",
+        ],
+        [
+          "Esforça-te e tem bom ânimo; o Senhor teu Deus é contigo por onde quer que andares.",
+          "Josué 1:9",
+        ],
+        [
+          "Novas são cada manhã as suas misericórdias; grande é a tua fidelidade.",
+          "Lamentações 3:23",
+        ],
+      ];
+      var prayers = [
+        {
+          n: "Manhã",
+          t: "Oração da manhã",
+          p: [
+            "Senhor, obrigado por mais um dia de vida. Abençoa os meus passos, os meus pensamentos e as minhas palavras.",
+            "Dá-me um coração calmo para enfrentar os desafios e olhos atentos para ajudar quem precisar de mim.",
+            "Guarda a minha família e conduze o meu dia com a tua luz. Amém.",
+          ],
+        },
+        {
+          n: "Noite",
+          t: "Oração da noite",
+          p: [
+            "Pai, ao fim deste dia, agradeço por tudo o que recebi, até pelo que ainda não compreendi.",
+            "Perdoa as minhas falhas e ajuda-me a perdoar. Entrego em tuas mãos as preocupações que não posso resolver agora.",
+            "Dá-nos um sono tranquilo e acorda-nos renovados. Amém.",
+          ],
+        },
+        {
+          n: "Gratidão",
+          t: "Oração de gratidão",
+          p: [
+            "Obrigado, Senhor, pelo pão, pelo teto, pelas pessoas que amo e pelos pequenos gestos de carinho que recebo.",
+            "Ensina-me a reconhecer as tuas bênçãos nos detalhes e a retribuir com bondade.",
+            "Que a minha vida seja uma forma de agradecer a ti. Amém.",
+          ],
+        },
+        {
+          n: "Família",
+          t: "Oração pela família",
+          p: [
+            "Senhor, abençoa a minha casa e cada pessoa que vive nela. Que haja paz, respeito e alegria entre nós.",
+            "Cura o que estiver ferido, une o que estiver distante e protege os nossos caminhos.",
+            "Que o teu amor seja o alicerce do nosso lar. Amém.",
+          ],
+        },
+        {
+          n: "Força",
+          t: "Oração nos momentos difíceis",
+          p: [
+            "Deus, estou cansado e preciso da tua força. Segura a minha mão quando eu não souber o que fazer.",
+            "Acalma o meu coração, renova a minha esperança e mostra-me o próximo passo.",
+            "Confio que não estou sozinho. Amém.",
+          ],
+        },
+      ];
+      var greets = [
+        [
+          "Bom dia abençoado",
+          "Que Deus abra o seu dia com paz no coração, saúde no corpo e alegria em cada passo. Bom dia!",
+        ],
+        [
+          "Boa tarde em paz",
+          "Que a tarde traga calma, bons encontros e a certeza de que Deus cuida de cada detalhe. Boa tarde!",
+        ],
+        [
+          "Boa noite com Deus",
+          "Que o Senhor guarde o seu sono, acalme os seus pensamentos e renove as suas forças. Boa noite!",
+        ],
+        [
+          "Feliz domingo",
+          "Que este domingo seja de descanso, gratidão e comunhão com quem você ama. Deus abençoe a sua semana.",
+        ],
+        [
+          "Palavra de ânimo",
+          "Não desista. Deus está trabalhando em você, mesmo quando você não vê. Siga com fé!",
+        ],
+        [
+          "Uma bênção para você",
+          "Que Deus te abençoe, te proteja e faça brilhar a luz dele sobre a sua vida hoje e sempre.",
+        ],
+      ];
+      var vi = Math.floor(Math.random() * verses.length);
+      function showVerse() {
+        document.getElementById("vtext").textContent = verses[vi][0];
+        document.getElementById("vref").textContent = verses[vi][1];
+      }
+      document.getElementById("nextVerse").onclick = function () {
+        vi = (vi + 1) % verses.length;
+        showVerse();
+      };
+      showVerse();
+
+      var tabs = document.getElementById("tabs"),
+        box = document.getElementById("prayer");
+      function showPrayer(i) {
+        var k = tabs.children;
+        for (var j = 0; j < k.length; j++)
+          k[j].setAttribute("aria-selected", j === i ? "true" : "false");
+        var p = prayers[i];
+        box.innerHTML = "";
+        var h = document.createElement("h3");
+        h.textContent = p.t;
+        box.appendChild(h);
+        p.p.forEach(function (x) {
+          var e = document.createElement("p");
+          e.textContent = x;
+          box.appendChild(e);
+        });
+      }
+      prayers.forEach(function (p, i) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.setAttribute("role", "tab");
+        b.textContent = p.n;
+        b.onclick = function () {
+          showPrayer(i);
+        };
+        tabs.appendChild(b);
+      });
+      showPrayer(0);
+
+      var toast = document.getElementById("toast"),
+        tm;
+      function say(m) {
+        toast.textContent = m;
+        toast.classList.add("on");
+        clearTimeout(tm);
+        tm = setTimeout(function () {
+          toast.classList.remove("on");
+        }, 1800);
+      }
+      var g = document.getElementById("greet");
+      greets.forEach(function (x) {
+        var q = document.createElement("blockquote"),
+          d = document.createElement("div"),
+          b = document.createElement("b"),
+          s = document.createElement("span"),
+          c = document.createElement("button");
+        b.textContent = x[0];
+        s.textContent = x[1];
+        c.type = "button";
+        c.className = "copy";
+        c.textContent = "Copiar";
+        c.onclick = function () {
+          try {
+            navigator.clipboard.writeText(x[1]).then(
+              function () {
+                say("Mensagem copiada");
+              },
+              function () {
+                say("Não foi possível copiar");
+              },
+            );
+          } catch (e) {
+            say("Não foi possível copiar");
+          }
+        };
+        d.appendChild(b);
+        d.appendChild(s);
+        q.appendChild(d);
+        q.appendChild(c);
+        g.appendChild(q);
+      });
+    
+      /* ===== Louvores ===== */
+      var songs = [
+        { t: "Noite Feliz", d: "Hino de Natal, instrumental", u: 0.36,
+          n: "G4:3 A4:1 G4:2 E4:6 G4:3 A4:1 G4:2 E4:6 D5:4 D5:2 B4:6 C5:4 C5:2 G4:6 A4:4 A4:2 C5:3 B4:1 A4:2 G4:3 A4:1 G4:2 E4:6 A4:4 A4:2 C5:3 B4:1 A4:2 G4:3 A4:1 G4:2 E4:6 D5:4 D5:2 F5:3 D5:1 B4:2 C5:6 E5:6 C5:3 G4:1 E4:2 G4:3 F4:1 D4:2 C4:6" },
+        { t: "Hino da Alegria", d: "Melodia de Beethoven, instrumental", u: 0.27,
+          n: "E4:2 E4:2 F4:2 G4:2 G4:2 F4:2 E4:2 D4:2 C4:2 C4:2 D4:2 E4:2 E4:3 D4:1 D4:4 E4:2 E4:2 F4:2 G4:2 G4:2 F4:2 E4:2 D4:2 C4:2 C4:2 D4:2 E4:2 D4:3 C4:1 C4:4 D4:2 D4:2 E4:2 C4:2 D4:2 E4:1 F4:1 E4:2 C4:2 D4:2 E4:1 F4:1 E4:2 D4:2 C4:2 D4:2 G3:4 E4:2 E4:2 F4:2 G4:2 G4:2 F4:2 E4:2 D4:2 C4:2 C4:2 D4:2 E4:2 D4:3 C4:1 C4:6" },
+        { t: "Graça Maravilhosa", d: "Amazing Grace, versão simples", u: 0.34,
+          n: "D4:2 G4:4 B4:1 G4:1 B4:4 A4:2 G4:4 E4:2 D4:6 D4:2 G4:4 B4:1 G4:1 B4:4 D5:2 D5:6 D4:2 G4:4 B4:1 G4:1 B4:4 A4:2 G4:4 E4:2 D4:6 D4:2 G4:4 B4:1 G4:1 B4:4 A4:2 G4:8" }
+      ];
+      var AC = null, master = null, vol = 0.6, cur = -1, curGain = null, curTimer = null, ambOn = false, ambTimer = null, ambGain = null;
+      var BASE = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+      function freq(s) {
+        var m = /^([A-G])(\d)$/.exec(s);
+        return 440 * Math.pow(2, (BASE[m[1]] + 12 * (+m[2] + 1) - 69) / 12);
+      }
+      function ctx() {
+        if (!AC) {
+          var C = window.AudioContext || window.webkitAudioContext;
+          AC = new C();
+          master = AC.createGain();
+          master.gain.value = vol * 0.8;
+          var d = AC.createDelay(1), fb = AC.createGain(), wet = AC.createGain();
+          d.delayTime.value = 0.27; fb.gain.value = 0.35; wet.gain.value = 0.3;
+          master.connect(AC.destination);
+          master.connect(d); d.connect(fb); fb.connect(d); d.connect(wet); wet.connect(AC.destination);
+        }
+        if (AC.state === "suspended") AC.resume();
+        return AC;
+      }
+      function tone(f, t, dur, out, peak, atk, rel, type2) {
+        var o1 = AC.createOscillator(), o2 = AC.createOscillator(), g = AC.createGain(), g2 = AC.createGain();
+        o1.type = "sine"; o2.type = type2 || "triangle";
+        o1.frequency.value = f; o2.frequency.value = f * 2;
+        g2.gain.value = 0.3;
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.linearRampToValueAtTime(peak, t + atk);
+        g.gain.setValueAtTime(peak, t + Math.max(atk, dur - rel));
+        g.gain.linearRampToValueAtTime(0.0001, t + dur);
+        o1.connect(g); o2.connect(g2); g2.connect(g); g.connect(out);
+        o1.start(t); o2.start(t); o1.stop(t + dur + 0.05); o2.stop(t + dur + 0.05);
+      }
+      function btnState(el, on, label) {
+        el.setAttribute("aria-pressed", on ? "true" : "false");
+        el.textContent = on ? "■ Parar" : label;
+      }
+      function stopSong() {
+        clearTimeout(curTimer);
+        if (curGain) {
+          try { curGain.gain.cancelScheduledValues(AC.currentTime); curGain.gain.setTargetAtTime(0, AC.currentTime, 0.05); } catch (e) {}
+          curGain = null;
+        }
+        if (cur >= 0) btnState(document.getElementById("sb" + cur), false, "▶ Tocar");
+        cur = -1;
+      }
+      function playSong(i) {
+        if (cur === i) { stopSong(); return; }
+        stopSong();
+        ctx();
+        var sg = AC.createGain(); sg.connect(master); curGain = sg; cur = i;
+        var t = AC.currentTime + 0.15, u = songs[i].u, parts = songs[i].n.split(" ");
+        parts.forEach(function (p) {
+          var a = p.split(":"), d = parseFloat(a[1]) * u;
+          tone(freq(a[0]), t, d * 1.05, sg, 0.2, 0.03, Math.min(0.25, d * 0.5));
+          t += d;
+        });
+        btnState(document.getElementById("sb" + i), true, "▶ Tocar");
+        var me = i;
+        curTimer = setTimeout(function () { if (cur === me) stopSong(); }, (t - AC.currentTime + 0.5) * 1000);
+      }
+      var chords = [["C3","G3","E4","G4"],["G2","D3","B3","D4"],["A2","E3","C4","E4"],["F2","C3","A3","C4"]];
+      function ambStep(k) {
+        var c = chords[k % chords.length], t = AC.currentTime;
+        c.forEach(function (n) { tone(freq(n), t, 9, ambGain, 0.07, 3, 3, "sine"); });
+      }
+      function toggleAmb() {
+        var b = document.getElementById("ambBtn");
+        if (ambOn) {
+          ambOn = false; clearInterval(ambTimer);
+          ambGain.gain.setTargetAtTime(0, AC.currentTime, 0.8);
+          btnState(b, false, "▶ Ligar"); return;
+        }
+        ctx();
+        ambGain = AC.createGain(); ambGain.gain.value = 1; ambGain.connect(master);
+        ambOn = true; var k = 0; ambStep(k++);
+        ambTimer = setInterval(function () { ambStep(k++); }, 7000);
+        btnState(b, true, "▶ Ligar");
+      }
+      (function () {
+        var box = document.getElementById("songs");
+        songs.forEach(function (s, i) {
+          var row = document.createElement("div");
+          row.className = "sound";
+          row.innerHTML = '<div class="info"><h3></h3><p></p></div><button class="playbtn" aria-pressed="false">▶ Tocar</button>';
+          row.querySelector("h3").textContent = s.t;
+          row.querySelector("p").textContent = s.d;
+          var b = row.querySelector("button");
+          b.id = "sb" + i;
+          b.addEventListener("click", function () { playSong(i); });
+          box.appendChild(row);
+        });
+        document.getElementById("ambBtn").addEventListener("click", toggleAmb);
+        document.getElementById("vol").addEventListener("input", function (e) {
+          vol = e.target.value / 100;
+          if (master) master.gain.value = vol * 0.8;
+        });
+      })();
+    </script>
+  </body>
+</html>
